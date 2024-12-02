@@ -1,15 +1,10 @@
 class Solution(object):
     def findMaxAverage(self, nums, k):
-        max_avg=0.0
-        avg=0
-        for i in range(k):
-            avg+=nums[i]
-        max_avg=avg/float(k)
+
+        curr_sum=sum(nums[:k])
+        max_avg=curr_sum/float(k)
         for i in range(k,len(nums)):
-            avg+=nums[i]
-            avg-=nums[i-k]
-            
-            if max_avg<avg/float(k):
-                max_avg=avg/float(k)
+            curr_sum +=nums[i] - nums[i-k]
+            max_avg=max(max_avg,curr_sum/float(k))
         return max_avg
 
